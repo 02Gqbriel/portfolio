@@ -1,10 +1,10 @@
 <script>
-	import { writable } from 'svelte/store';
+	import { theme, theme_mode, style } from '../stores';
 
-	export const namer = writable('Gabriel');
+	$: t = $theme[$theme_mode];
 </script>
 
-<div id="root">
+<div id="root" style={style(t)}>
 	<header>
 		<a href="/">
 			<h2>Gabriel<span class="headerZusatz">s portfolio</span></h2>
@@ -13,20 +13,24 @@
 			<a href="/projects">Projekte</a>
 			<a href="/about">About Me</a>
 			<a href="/contact">Contact Me</a>
+			<button
+				on:click={() => ($theme_mode == 'dark' ? theme_mode.set('light') : theme_mode.set('dark'))}
+				>darkmode</button
+			>
 		</nav>
 	</header>
 	<main>
 		<slot />
 	</main>
 	<footer>
-		<span>footer</span>
+		<span>@copyrigths Gabriel Egli</span>
 	</footer>
 </div>
 
 <style>
-	* {
-		font-family: 'Poppins', sans-serif;
-		color: #e1e8eb;
+	:global(*) {
+		color: var(--color);
+		background-color: var(--background);
 	}
 
 	a {
@@ -36,7 +40,15 @@
 	a:hover,
 	a:hover > h2,
 	a:hover > h2 > span {
-		color: #ffc107;
+		color: var(--primary);
+	}
+
+	a:active {
+		color: var(-secondary);
+	}
+
+	a:focus {
+		color: var(-secondary);
 	}
 
 	#root {
@@ -44,14 +56,28 @@
 		flex-direction: column;
 		justify-content: space-between;
 		min-height: 100vh;
-		margin-left: 10px;
-		margin-right: 10px;
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+
+	header,
+	main,
+	footer {
+		width: 100vw;
+		max-width: 1200px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
 	header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+	}
+
+	footer {
+		text-align: center;
+		font-size: 12.5px;
 	}
 
 	.headerZusatz {
