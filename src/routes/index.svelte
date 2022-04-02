@@ -8,8 +8,8 @@
 	<title>Gabriels Portfolio</title>
 </svelte:head>
 
-<span style={style(t)}>
-	<h1>Hello</h1>
+<span class="container">
+	<h1>Home</h1>
 </span>
 
 <style>

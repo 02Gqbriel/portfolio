@@ -1,0 +1,15 @@
+/* Write your global styles here, in PostCSS syntax */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Courier New', Courier, monospace;
+}
+
+::selection {
+    background-color: var(--secondary);
+}

@@ -1,28 +1,34 @@
 <script>
-	import { theme, theme_mode, style } from '../stores';
+	import '../app.css';
+	import { theme, theme_mode as tm, style } from '../stores';
 
-	$: t = $theme[$theme_mode];
+	$: t = $theme[$tm];
 </script>
 
-<div id="root" style={style(t)}>
-	<header>
-		<a href="/">
-			<h2>Gabriel<span class="headerZusatz">s portfolio</span></h2>
+<div id="root" class="flex flex-col justify-between min-h-screen py-3" style={style(t)}>
+	<header class="flex justify-between items-center mt-2">
+		<a href="/" class="font-bold text-2xl">
+			<h2>Gabriel&apos;<span class="text-xs">s portfolio</span></h2>
 		</a>
-		<nav>
+		<nav class="flex items-center justify-between w-[17.5vw]">
 			<a href="/projects">Projekte</a>
 			<a href="/about">About Me</a>
 			<a href="/contact">Contact Me</a>
-			<button
-				on:click={() => ($theme_mode == 'dark' ? theme_mode.set('light') : theme_mode.set('dark'))}
-				>darkmode</button
-			>
+
+			<img
+				src={'/icons/' + ($tm == 'dark' ? 'sun.svg' : 'moon.svg')}
+				class="w-7 hover:w-8 active:w-7"
+				alt=""
+				on:click={() => {
+					tm.set($tm == 'dark' ? 'light' : 'dark');
+				}}
+			/>
 		</nav>
 	</header>
 	<main>
 		<slot />
 	</main>
-	<footer>
+	<footer class="text-center text-xs">
 		<span>@copyrigths Gabriel Egli</span>
 	</footer>
 </div>
@@ -31,60 +37,40 @@
 	:global(*) {
 		color: var(--color);
 		background-color: var(--background);
+		transition: all 0.25s ease-in-out;
 	}
 
 	a {
-		text-decoration: none;
-	}
-
-	a:hover,
-	a:hover > h2,
-	a:hover > h2 > span {
-		color: var(--primary);
+		display: inline-block;
 	}
 
 	a:active {
-		color: var(-secondary);
+		color: var(--primary);
+	}
+
+	nav > a::after {
+		content: '';
+		width: 0px;
+		height: 1.5px;
+		display: block;
+		background: var(--primary);
+		transition: 300ms;
+	}
+
+	a:hover::after {
+		width: 100%;
 	}
 
 	a:focus {
 		color: var(-secondary);
 	}
 
-	#root {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		min-height: 100vh;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
 	header,
 	main,
 	footer {
-		width: 100vw;
-		max-width: 1200px;
+		width: 75vw;
+		min-width: 700px;
 		margin-left: auto;
 		margin-right: auto;
-	}
-
-	header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	footer {
-		text-align: center;
-		font-size: 12.5px;
-	}
-
-	.headerZusatz {
-		font-size: 1rem;
-	}
-
-	nav > a {
-		margin-left: 0.5rem;
 	}
 </style>

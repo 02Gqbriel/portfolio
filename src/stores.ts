@@ -19,13 +19,13 @@ theme_mode.subscribe((e) => {
 export const theme = readable({
 	dark: {
 		primaryColor: '#69995D',
-		secondaryColor: '#69995D',
+		secondaryColor: '#75A96A',
 		backgroundColor: '#424242',
 		fontColor: '#FEFFEA'
 	},
 	light: {
 		primaryColor: '#69995D',
-		secondaryColor: 'green',
+		secondaryColor: '#75A96A',
 		backgroundColor: '#FEFFEA',
 		fontColor: '#424242'
 	}

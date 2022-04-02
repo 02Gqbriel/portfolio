@@ -2,4 +2,4 @@
 	<title>Gabriels Portfolio | About Me</title>
 </svelte:head>
 
-<span>Hello</span>
+<span>About me</span>
