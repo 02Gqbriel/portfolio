@@ -1,7 +1,7 @@
 import { writable, readable } from 'svelte/store';
 import { browser } from '$app/env';
 
-interface style {
+interface Style {
 	primaryColor: string;
 	secondaryColor: string;
 	backgroundColor: string;
@@ -31,6 +31,6 @@ export const theme = readable({
 	}
 });
 
-export const style = (t: style) => {
-	return `--color: ${t.fontColor};--background: ${t.backgroundColor};--primary: ${t.primaryColor};--secondary: ${t.secondaryColor};`;
+export const style = (t: Style) => {
+	return `--color:${t.fontColor};--background:${t.backgroundColor};--primary:${t.primaryColor};--secondary:${t.secondaryColor};`;
 };

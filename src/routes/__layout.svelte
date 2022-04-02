@@ -5,19 +5,19 @@
 	$: t = $theme[$tm];
 </script>
 
-<div id="root" class="flex flex-col justify-between min-h-screen py-3" style={style(t)}>
-	<header class="flex justify-between items-center mt-2">
-		<a href="/" class="font-bold text-2xl">
-			<h2>Gabriel&apos;<span class="text-xs">s portfolio</span></h2>
+<div id="root" class="flex flex-col justify-between min-h-screen py-3 opacity-95" style={style(t)}>
+	<header class="flex justify-between items-center mt-2 h-10">
+		<a href="/" class="font-bold text-2xl hover:text-3xl">
+			<h2>Gabriel<span class="text-base">{' '}Egli</span></h2>
 		</a>
-		<nav class="flex items-center justify-between w-[17.5vw]">
+		<nav class="flex items-center justify-between w-44">
 			<a href="/projects">Projekte</a>
 			<a href="/about">About Me</a>
 			<a href="/contact">Contact Me</a>
 
 			<img
 				src={'/icons/' + ($tm == 'dark' ? 'sun.svg' : 'moon.svg')}
-				class="w-7 hover:w-8 active:w-7"
+				class="w-7 hover:w-8 active:w-7 cursor-pointer"
 				alt=""
 				on:click={() => {
 					tm.set($tm == 'dark' ? 'light' : 'dark');
@@ -29,7 +29,7 @@
 		<slot />
 	</main>
 	<footer class="text-center text-xs">
-		<span>@copyrigths Gabriel Egli</span>
+		<span>@copyrights Gabriel Egli</span>
 	</footer>
 </div>
 
