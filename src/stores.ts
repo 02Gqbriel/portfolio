@@ -5,6 +5,7 @@ interface Style {
 	primaryColor: string;
 	secondaryColor: string;
 	backgroundColor: string;
+	darkbackgroundColor: string;
 	fontColor: string;
 }
 
@@ -21,16 +22,18 @@ export const theme = readable({
 		primaryColor: '#69995D',
 		secondaryColor: '#75A96A',
 		backgroundColor: '#424242',
+		darkbackgroundColor: '#383838',
 		fontColor: '#FEFFEA'
 	},
 	light: {
 		primaryColor: '#69995D',
 		secondaryColor: '#75A96A',
 		backgroundColor: '#FEFFEA',
+		darkbackgroundColor: '#EEEFDA',
 		fontColor: '#424242'
 	}
 });
 
 export const style = (t: Style) => {
-	return `--color:${t.fontColor};--background:${t.backgroundColor};--primary:${t.primaryColor};--secondary:${t.secondaryColor};`;
+	return `--color:${t.fontColor};--background:${t.backgroundColor};--primary:${t.primaryColor};--secondary:${t.secondaryColor};--darkbackground:${t.darkbackgroundColor}`;
 };

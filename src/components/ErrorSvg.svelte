@@ -11,6 +11,7 @@
 		viewBox="0 0 24 24"
 		stroke={t.backgroundColor}
 		class={`w-36 h-36 rounded-xl select-none`}
+		style="background: var(--color);"
 		stroke-width="2"
 	>
 		<path
@@ -21,9 +22,3 @@
 		/>
 	</svg>
 </span>
-
-<style>
-	svg {
-		background: var(--color);
-	}
-</style>
