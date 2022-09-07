@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 # Svelte + TS + Vite
+=======
+# WORK IN PROGRESS
+
+# create-svelte
+>>>>>>> 4d1cb8370afd0caeea2cc6b79e8a67a7659e0492
 
 This template should help get you started developing with Svelte and TypeScript in Vite.
 
