@@ -6,7 +6,7 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			sans: ['"Poppins"', ...theme.fontFamily.sans],
-			title: ["'La Belle Aurore'", 'cursive'],
+			title: ["'Great Vibes'", 'cursive'],
 		},
 
 		extend: {},

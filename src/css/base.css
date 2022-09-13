@@ -3,6 +3,6 @@
 @layer base {
 	:root,
 	* {
-		@apply antialiased selection:bg-sky-100 dark:selection:bg-sky-800 selection:text-sky-700 dark:selection:text-sky-100 dark:bg-zinc-700 dark:text-slate-100 scroll-smooth overflow-x-hidden;
+		@apply antialiased selection:bg-sky-100 dark:selection:bg-sky-800 selection:text-sky-700 dark:selection:text-sky-200 text-slate-700 dark:text-slate-100 scroll-smooth overflow-x-hidden;
 	}
 }
