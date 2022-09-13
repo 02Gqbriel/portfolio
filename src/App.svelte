@@ -1,109 +1,40 @@
 <script>
+	import { onMount } from 'svelte';
+
 	let dark = localStorage.getItem('dark') === 'true' ?? false;
+	let menuOpen = localStorage.getItem('menuOpen') === 'true' ?? false;
+
+	let scrollElement = null;
+
+	onMount(() => {
+		scrollEvent();
+	});
 
 	const setDarkmode = () => {
 		document.documentElement.classList.toggle('dark');
 		localStorage.setItem('dark', (!dark).toString());
 		return (dark = !dark);
 	};
+
+	const scrollEvent = (e) => {
+		const s = Math.ceil(window.scrollY - window.screenY),
+			m = document.documentElement.offsetHeight - document.documentElement.clientHeight;
+
+		const p = Math.round((100 / m) * s);
+
+		const px = Math.round((window.innerWidth / 100) * p);
+
+		scrollElement.style.width = px + 'px';
+	};
 </script>
 
-<header
-	class="flex justify-between items-center sticky top-0 bg-white dark:bg-zinc-700 p-1"
->
-	<h1 class="text-lg">Gabriel Egli</h1>
+<svelte:window on:scroll={scrollEvent} />
 
-	<nav class="hidden space-x-2 sm:flex items-center">
-		<a
-			class="decoration-sky-400 decoration-2 px-1 hover:underline"
-			href="#about">about me</a
-		>
-		<a
-			class="decoration-sky-400 decoration-2 px-1 hover:underline"
-			href="#projects">projects</a
-		>
-		<a
-			class="decoration-sky-400 decoration-2 px-1 hover:underline"
-			href="#contact">contact</a
-		>
+<header class="h-screen">
+	<img class="absolute -z-10 left-0 top-0 h-screen w-screen" src="/zuerich.jpg" alt="" />
+	<div class="absolute -z-10 left-0 top-0 w-screen h-screen backdrop-blur-sm" />
 
-		<div
-			class="group cursor-pointer p-1 active:p-1.5 hover:bg-slate-100 dark:hover:bg-zinc-500 hover:rounded"
-			on:click={setDarkmode}
-		>
-			{#if !dark}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					fill="currentColor"
-					class="w-6 h-6 group-hover:bg-slate-100 dark:group-hover:bg-zinc-500 group-active:w-5 group-active:h-5 group-active:fill-sky-200"
-				>
-					<path
-						fill-rule="evenodd"
-						d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-						clip-rule="evenodd"
-					/>
-				</svg>
-			{:else}
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 24 24"
-					fill="currentColor"
-					class="w-6 h-6 group-hover:bg-slate-100 dark:group-hover:bg-zinc-500 group-active:w-5 group-active:h-5 group-active:fill-sky-600"
-				>
-					<path
-						d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
-					/>
-				</svg>
-			{/if}
-		</div>
-	</nav>
-
-	<nav class="block space-x-2 sm:hidden items-center">
-		<img src="" alt="" />
-		<div>
-			<a
-				class="decoration-sky-400 decoration-2 px-1 hover:underline"
-				href="#about">about me</a
-			>
-			<a
-				class="decoration-sky-400 decoration-2 px-1 hover:underline"
-				href="#projects">projects</a
-			>
-			<a
-				class="decoration-sky-400 decoration-2 px-1 hover:underline"
-				href="#contact">contact</a
-			>
-
-			<div class="cursor-pointer" on:click={setDarkmode}>
-				{#if !dark}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="currentColor"
-						class="w-6 h-6"
-					>
-						<path
-							fill-rule="evenodd"
-							d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
-							clip-rule="evenodd"
-						/>
-					</svg>
-				{:else}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="currentColor"
-						class="w-6 h-6"
-					>
-						<path
-							d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
-						/>
-					</svg>
-				{/if}
-			</div>
-		</div>
-	</nav>
+	<h1 class="font-title text-7xl text-white h-max w-fit p-4 py-8 -my-5">gabriel egli</h1>
 </header>
 
 <main class="grow my-1 p-1">
@@ -111,8 +42,8 @@
 		<div class="h-min">
 			<h1>HEllo</h1>
 		</div>
-		<div class="h-min">
-			<img src="/me.jpg" alt="" class="max-w-xs rounded-[70%]" />
+		<div class="h-min bg-slate-600 rounded-sm transform-gpu skew-x-1 skew-y-6">
+			<img src="/me.jpg" alt="" class="max-w-xs rounded transform-gpu " />
 		</div>
 	</section>
 	<section class="min-h-screen" id="projects">projects</section>
@@ -120,3 +51,10 @@
 </main>
 
 <footer class="p-1">footer</footer>
+
+<div class="fixed -top-1 left-0 right-0 h-1.5">
+	<div
+		class="h-1.5 bg-zinc-700 shadow-sm dark:shadow-white dark:bg-slate-100 shadow-black"
+		bind:this={scrollElement}
+	/>
+</div>
