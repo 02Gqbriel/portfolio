@@ -11,19 +11,21 @@
 
 	onMount(() => {
 		title.style.position = 'fixed';
-		pastHeader = window.innerHeight - 10 < window.scrollY;
+		pastHeader = window.innerHeight - 30 < window.scrollY;
 		setTitleSize();
 		setTitlePostion();
 
 		top = window.scrollY < 20;
 
 		setTimeout(() => {
+			setTitleSize();
+			setTitlePostion();
 			done = true;
 		}, 500);
 	});
 
 	function scroll() {
-		pastHeader = window.innerHeight - 10 < window.scrollY;
+		pastHeader = window.innerHeight - 30 < window.scrollY;
 		setTitleSize();
 		setTitlePostion();
 		top = window.scrollY < 20;
@@ -58,15 +60,15 @@
 			);
 
 		//* top
-		let maxTop = (window.innerHeight - title.clientHeight) / 2,
+		let maxTop = (window.innerHeight - title.clientHeight) / 2 - 10,
 			minTop = 5;
 
 		let mappedTop = Math.round(
 			-map(0, window.innerHeight, -maxTop, -minTop, window.scrollY)
 		);
 
-		if (minTop > mappedTop) mappedTop = minTop;
-		if (maxTop < mappedTop) mappedTop = maxTop;
+		if (minTop + 1 > mappedTop) mappedTop = minTop;
+		if (maxTop - 1 < mappedTop) mappedTop = maxTop;
 
 		title.style.top = mappedTop + 'px';
 
@@ -96,6 +98,10 @@
 		alt=""
 	/>
 	<div class="absolute -z-10 left-0 top-0 w-screen h-screen backdrop-blur-sm" />
+
+	{#if pastHeader}
+		<div class="fixed left-0 right-0 top-0 md:h-16 h-14 bg-white dark:bg-zinc-700 z-0" />
+	{/if}
 
 	<h1
 		bind:this={title}

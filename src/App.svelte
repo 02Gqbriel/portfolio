@@ -3,6 +3,7 @@
 	import About from './about/About.svelte';
 	import Footer from './footer/Footer.svelte';
 	import Header from './header/Header.svelte';
+	import Carousel from './lang_carousel/Carousel.svelte';
 
 	let dark = localStorage.getItem('dark') === 'true' ?? false;
 	let menuOpen = localStorage.getItem('menuOpen') === 'true' ?? false;
@@ -13,17 +14,9 @@
 		scrollEvent();
 	});
 
-	const setDarkmode = () => {
-		document.documentElement.classList.toggle('dark');
-		localStorage.setItem('dark', (!dark).toString());
-		return (dark = !dark);
-	};
-
-	const scrollEvent = e => {
+	const scrollEvent = (e) => {
 		const s = Math.ceil(window.scrollY - window.screenY),
-			m =
-				document.documentElement.offsetHeight -
-				document.documentElement.clientHeight;
+			m = document.documentElement.offsetHeight - document.documentElement.clientHeight;
 
 		const p = Math.round((100 / m) * s);
 
@@ -39,6 +32,8 @@
 
 <main class="grow my-1 p-1">
 	<About />
+
+	<Carousel />
 
 	<section class="min-h-screen" id="projects">projects</section>
 	<section class="min-h-screen" id="contact">contact</section>
