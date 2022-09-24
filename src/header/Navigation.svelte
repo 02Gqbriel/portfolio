@@ -14,11 +14,19 @@
 	}
 </script>
 
-<nav class="fixed top-5 right-5 space-x-3 md:flex w-max hidden items-center">
+<nav
+	class="fixed top-5 right-5 space-x-3 md:flex w-max hidden items-center z-20"
+>
 	<a class="{!pastHeader && 'text-white'} hover:underline" href="#home">home</a>
-	<a class="{!pastHeader && 'text-white'} hover:underline" href="#about">about me</a>
-	<a class="{!pastHeader && 'text-white'} hover:underline" href="#projects">projects</a>
-	<a class="{!pastHeader && 'text-white'} hover:underline" href="#contact">contact me</a>
+	<a class="{!pastHeader && 'text-white'} hover:underline" href="#about"
+		>about me</a
+	>
+	<a class="{!pastHeader && 'text-white'} hover:underline" href="#projects"
+		>projects</a
+	>
+	<a class="{!pastHeader && 'text-white'} hover:underline" href="#contact"
+		>contact me</a
+	>
 
 	<button class="w-5 h-5 overflow-hidden" on:click={toggleDarkmode}>
 		<svg
@@ -55,7 +63,7 @@
 		xmlns="http://www.w3.org/2000/svg"
 		viewBox="0 0 20 20"
 		fill="currentColor"
-		class="w-7 h-7 fixed top-3 right-4 {!pastHeader && 'fill-white'}"
+		class="w-7 h-7 z-20 fixed top-3 right-4 {!pastHeader && 'fill-white'}"
 	>
 		<path
 			fill-rule="evenodd"
@@ -93,7 +101,11 @@
 				<span class="grow"> home </span>
 			</a>
 
-			<a on:click={toggleMenu} class="flex space-x-2 items-center" href="#about">
+			<a
+				on:click={toggleMenu}
+				class="flex space-x-2 items-center"
+				href="#about"
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"
@@ -110,7 +122,11 @@
 				<span class="grow"> about me </span>
 			</a>
 
-			<a on:click={toggleMenu} class="flex space-x-2 items-center" href="#projects">
+			<a
+				on:click={toggleMenu}
+				class="flex space-x-2 items-center"
+				href="#projects"
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"
@@ -130,7 +146,11 @@
 				<span class="grow"> projects </span>
 			</a>
 
-			<a on:click={toggleMenu} class="flex space-x-2 items-center" href="#contact">
+			<a
+				on:click={toggleMenu}
+				class="flex space-x-2 items-center"
+				href="#contact"
+			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 20 20"
@@ -149,7 +169,10 @@
 			</a>
 		</div>
 
-		<button class="w-8 h-8 overflow-hidden self-end m-3" on:click={toggleDarkmode}>
+		<button
+			class="w-8 h-8 overflow-hidden self-end m-3"
+			on:click={toggleDarkmode}
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 20 20"
@@ -188,7 +211,8 @@
 				/>
 			</svg>
 
-			<span class="text-xs italic font-light pr-1">Click blurred background to close</span
+			<span class="text-xs italic font-light pr-1"
+				>Click blurred background to close</span
 			>
 		</div>
 	</div>

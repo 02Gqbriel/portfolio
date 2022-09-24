@@ -36,16 +36,16 @@
 
 		if (window.scrollY == 0)
 			return (title.style.fontSize =
-				(0.3 * window.innerHeight + 0.3 * window.innerWidth) / 5 + 'px');
+				(0.25 * window.innerHeight + 0.25 * window.innerWidth) / 6 + 'px');
 
 		let resultBuffer = -map(0, window.innerHeight, -1, 0, window.scrollY);
 
 		let mapped = resultBuffer < 0 ? 0 : resultBuffer;
 
-		resultBuffer = 5 / mapped;
+		resultBuffer = 6 / mapped;
 
 		title.style.fontSize =
-			(0.3 * window.innerHeight + 0.3 * window.innerWidth) /
+			(0.25 * window.innerHeight + 0.25 * window.innerWidth) /
 				(resultBuffer > 15 ? 15 : resultBuffer) +
 			'px';
 	}
@@ -100,7 +100,9 @@
 	<div class="absolute -z-10 left-0 top-0 w-screen h-screen backdrop-blur-sm" />
 
 	{#if pastHeader}
-		<div class="fixed left-0 right-0 top-0 md:h-16 h-14 bg-white dark:bg-zinc-700 z-0" />
+		<div
+			class="fixed left-0 right-0 top-0 md:h-16 h-14 z-10 bg-white dark:bg-zinc-700 "
+		/>
 	{/if}
 
 	<h1
@@ -108,7 +110,7 @@
 		id="title"
 		class="{done ? 'opacity-100' : 'opacity-0'} {pastHeader
 			? 'text-slate-700 dark:text-white'
-			: 'text-white'} duration-500 ease-in-out transition-opacity font-title text-6xl h-max w-fit p-3 md:px-5 md:pb-6"
+			: 'text-white'} duration-500 ease-in-out z-20 font-semibold transition-opacity font-title text-6xl h-max w-fit p-3 md:pl-6 md:pr-4 md:pt-0 md:pb-6"
 	>
 		gabriel egli
 	</h1>

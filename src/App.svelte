@@ -5,18 +5,17 @@
 	import Header from './header/Header.svelte';
 	import Carousel from './lang_carousel/Carousel.svelte';
 
-	let dark = localStorage.getItem('dark') === 'true' ?? false;
-	let menuOpen = localStorage.getItem('menuOpen') === 'true' ?? false;
-
 	let scrollElement = null;
 
 	onMount(() => {
 		scrollEvent();
 	});
 
-	const scrollEvent = (e) => {
+	const scrollEvent = e => {
 		const s = Math.ceil(window.scrollY - window.screenY),
-			m = document.documentElement.offsetHeight - document.documentElement.clientHeight;
+			m =
+				document.documentElement.offsetHeight -
+				document.documentElement.clientHeight;
 
 		const p = Math.round((100 / m) * s);
 
@@ -30,13 +29,30 @@
 
 <Header />
 
-<main class="grow my-1 p-1">
+<main class="grow my-1 p-1 flex flex-col space-y-24 md:space-y-32">
+	<h2 id="about" class="text-center font-medium text-2xl mt-10 underline py-1">
+		About me
+	</h2>
 	<About />
 
 	<Carousel />
 
-	<section class="min-h-screen" id="projects">projects</section>
-	<section class="min-h-screen" id="contact">contact</section>
+	<h2
+		id="projects"
+		class="text-center font-medium text-2xl my-10 underline py-1"
+	>
+		Projects
+	</h2>
+
+	<section>projects</section>
+
+	<h2
+		id="contact"
+		class="text-center font-medium text-2xl my-10 underline py-1"
+	>
+		Contact me
+	</h2>
+	<section>contact</section>
 </main>
 
 <Footer />
